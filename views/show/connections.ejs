@@ -1,0 +1,34 @@
+<%- include("../partials/nav.ejs") %>
+<!-- main content -->
+<main class="container content-container">
+  <%- include("../partials/flashMsgs.ejs") %>
+  <div class="jumbotron" id="listOfCategoriesContainer">
+    <% if(connections.length) { %>
+      <h2 class="mb-4" style="text-align: center;">Explore Categories</h2>
+      <div class="row">
+        <% for (const categoryObj of categories) { %>
+          <div class="col-md-4 mb-4">
+            <div class="category-section">
+              <h4 class="mb-3"><%= categoryObj %></h4>
+              <ul class="list-group">
+                <% for (const connection of connections) { %>
+                  <% if(connection.category === categoryObj) { %>
+                    <li class="list-group-item">
+                      <a href="/connections/<%= connection.id %>"><%= connection.title %></a>
+                    </li>
+                  <% } %>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    <%  } else { %>
+      <div class="no-categories-message">
+        <h4>There are no categories in Breakmates. Add a new connection <a href="/connections/newConnection">here</a>.</h4>
+      </div>
+    <% } %>
+  </div>
+</main>
+<!-- footer section -->
+<%- include("../partials/footer.ejs") %>

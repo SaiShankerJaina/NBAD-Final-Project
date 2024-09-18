@@ -1,0 +1,25 @@
+<%- include("../partials/nav.ejs") %>
+<main class="container content-container">
+  <%- include("../partials/flashMsgs.ejs") %>
+  <div class="jumbotron text-center">
+    <h2 class="mb-4">Login</h2>
+    <form action="/users/login" method="POST">
+      <div class="mb-3 row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+</main>
+<%- include("../partials/footer.ejs") %>

@@ -1,0 +1,73 @@
+<%- include("../partials/nav.ejs") %>
+<!-- main content -->
+<main class="container content-container">
+  <%- include("../partials/flashMsgs.ejs") %>
+  <div class="jumbotron">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="mb-3">
+          <img id="eventPic" alt="<%= connection.title %>" src="<%= connection.pic %>" class="img-fluid" />
+          <span id="eventTitle"><%= connection.title %></span>
+        </h2>
+      </div>
+
+      <% if(isAuthor) { %>
+        <div class="text-end">
+          <form>
+            <button type="submit" formethod="GET" class="btn btn-outline-primary me-2"
+              formaction="/connections/<%= connection.id%>/edit">Update</button>
+          </form>
+
+          <form method="POST" action="/connections/<%= connection.id%>?_method=DELETE">
+            <button class="btn btn-outline-danger" id="deleteBut">Delete</button>
+          </form>
+        </div>
+      <% } %>
+
+      <% if((user && !isAuthor) || !user) { %>
+        <div class="text-end">
+          <% if(rsvps.length > 0) { %>
+            <p class="lead"><strong><%= rsvps.length %></strong> people are going</p>
+          <% } %>
+
+          <p class="lead">Are you going to this event? RSVP now to get notified!</p>
+          <form method="POST" action="/connections/<%= connection.id%>/rsvp" class="d-flex gap-2">
+            <button type="submit" class="btn btn-success" name="rsvp" value="YES">Yes</button>
+            <button type="submit" class="btn btn-danger" name="rsvp" value="NO">No</button>
+            <button type="submit" class="btn btn-primary" name="rsvp" value="MAYBE">Maybe</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-borderless">
+          <tr>
+            <td><b>Presented By:</b></td>
+            <td id="hostedBy"><%= connection.host.firstName + " " + connection.host.lastName %></td>
+          </tr>
+          <tr>
+            <td><b>Venue:</b></td>
+            <td id="location"><%= connection.location %></td>
+          </tr>
+          <tr>
+            <td><b>Time:</b></td>
+            <td id="time">
+              <%= (new Date(connection.date)).toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }) %> | From <%= connection.start %> - <%= connection.end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class="mb-3"><b><u id="descTitle">Description</u></b></h4>
+        <p id="description"><%= connection.description %></p>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- footer section -->
+<%- include("../partials/footer.ejs") %>

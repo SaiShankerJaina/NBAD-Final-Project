@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Index</title>
+    <base href="/">
+    
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-white bg-white logo-nav-bar">
+        <nav class="bg-white border-bottom box-shadows" style="display: flex; align-items: center;">
+            <a href="<%= locals.rootPath %>">
+                <img src="../images/logo.png" alt="Logo" width="35" height="35">
+            </a>
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+                <a href="/" class="custom-link">Breakmates</a>
+            </h5>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <br />
+        <div class="d-flex flex-column flex-md-row align-items-center p-3" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <% if (user) { %>
+                    <a href="/connections/newConnection" id="text1">Start a new Connection &nbsp;</a>
+                    <% } %>
+
+                    <% if (!user) { %>
+                    <a href="/users/login" id="but2">Login &nbsp;</a>
+                    <a href="/users/new" id="but2">Sign Up &nbsp;</a>
+                    <% } %>
+
+                    <% if(user) { %>
+                    <a href="/users/profile" id="text1">Profile &nbsp;</a>
+                    <a href="/users/logout" id="text1">Logout &nbsp;</a>
+                    <% } %>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" id="second-nav">
+        <ul class="navbar-nav mx-auto"> <!-- Use mx-auto to center align the items -->
+            <li><a href="/" id="text2">Home &nbsp;</a></li>
+            <li>
+                <a href="/connections/connections" id="text3">Connections</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <% if (user) { %>
+            <li id="text2">
+                Welcome, <%= username %>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+    <br />
+</header>
+

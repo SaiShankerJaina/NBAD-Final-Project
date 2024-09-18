@@ -1,0 +1,108 @@
+<%- include("../partials/nav.ejs") %>
+<br />
+<div class="container">
+  <main class="new-connection-container">
+    <%- include("../partials/flashMsgs.ejs") %>
+    <h1 class="text-center">Create a new connection</h1>
+    <form class="new-connection-form" method="POST" action="/connections/">
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input
+          type="text"
+          class="form-control"
+          id="category"
+          placeholder="Enter the category of your connection"
+          name="category"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Enter the title of your connection"
+          name="title"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="details" class="form-label">Details</label>
+        <textarea
+          class="form-control"
+          id="details"
+          placeholder="Enter the details of your connection"
+          name="description"
+          required
+          minlength="10"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Where</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          placeholder="Enter the location of your connection"
+          name="location"
+          required
+        />
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <label for="date" class="form-label">When</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            name="date"
+            required
+          />
+        </div>
+        <div class="col">
+          <label for="start-time" class="form-label">Start</label>
+          <input
+            type="time"
+            class="form-control"
+            id="start-time"
+            name="start"
+            required
+          />
+        </div>
+        <div class="col">
+          <label for="end-time" class="form-label">End</label>
+          <input
+            type="time"
+            class="form-control"
+            id="end-time"
+            name="end"
+            required
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="file" class="form-label">File</label>
+        <input
+          type="text"
+          class="form-control"
+          id="file"
+          accept="image/*"
+          placeholder="Enter the image URL"
+          name="pic"
+          required
+          pattern="^(http:\/\/|https:\/\/).+"
+          title="Image URL must start with http:// or https://"
+        />
+      </div>
+      <div class="d-grid gap-2 submit-btn-container">
+        <button type="submit" class="btn btn-primary">
+          Create connection
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
+<br />
+<br />
+<%- include("../partials/footer.ejs") %>
